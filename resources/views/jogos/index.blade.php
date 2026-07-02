@@ -1,61 +1,147 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold">Jogos</h2>
-    </x-slot>
 
-    <div class="py-6 max-w-6xl mx-auto">
+<x-slot name="header">
 
-        <a href="{{ route('jogos.create') }}"
-           class="bg-blue-600 text-white px-4 py-2 rounded">
-            Novo Jogo
-        </a>
+<div class="flex justify-between items-center">
 
-        @if(session('success'))
-            <div class="mt-4 p-3 bg-green-100 rounded">
-                {{ session('success') }}
-            </div>
-        @endif
+<h2 class="text-2xl font-bold text-gray-800">
 
-        <table class="w-full mt-6 border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 text-left">Nome</th>
-                    <th class="p-2 text-left">Categoria</th>
-                    <th class="p-2 text-left">Jogadores</th>
-                    <th class="p-2 text-left">Duração</th>
-                    <th class="p-2 text-left">Ações</th>
-                </tr>
-            </thead>
+Inventário de Jogos
 
-            <tbody>
-                @foreach($jogos as $jogo)
-                    <tr class="border-t">
-                        <td class="p-2">{{ $jogo->nome }}</td>
-                        <td class="p-2">{{ $jogo->categoria }}</td>
-                        <td class="p-2">{{ $jogo->jogadores_min }} - {{ $jogo->jogadores_max }}</td>
-                        <td class="p-2">{{ $jogo->duracao_minutos }} min</td>
-                        <td class="p-2">
-                            <a class="text-blue-600"
-                               href="{{ route('jogos.edit', $jogo) }}">
-                                Editar
-                            </a>
+</h2>
 
-                            <form action="{{ route('jogos.destroy', $jogo) }}"
-                                  method="POST"
-                                  class="inline">
-                                @csrf
-                                @method('DELETE')
+<a href="{{ route('jogos.create') }}"
+class="bg-blue-600 hover:bg-blue-700 text-blue px-5 py-2 rounded-lg">
 
-                                <button class="text-red-600"
-                                        type="submit">
-                                    Excluir
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+Novo Jogo
 
-    </div>
+</a>
+
+</div>
+
+</x-slot>
+
+<div class="py-8">
+
+<div class="max-w-7xl mx-auto">
+
+@if(session('success'))
+
+<div class="mb-5 p-4 rounded-lg bg-green-100 text-green-700">
+
+{{ session('success') }}
+
+</div>
+
+@endif
+
+<div class="bg-white shadow-xl rounded-xl overflow-hidden">
+
+<table class="min-w-full">
+
+<thead class="bg-gray-100">
+
+<tr>
+
+<th class="px-6 py-4 text-left">Nome</th>
+
+<th class="px-6 py-4 text-left">Categoria</th>
+
+<th class="px-6 py-4 text-left">Jogadores</th>
+
+<th class="px-6 py-4 text-left">Duração</th>
+
+<th class="px-6 py-4 text-center">Ações</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+@forelse($jogos as $jogo)
+
+<tr class="border-t hover:bg-gray-50">
+
+<td class="px-6 py-4">
+
+{{ $jogo->nome }}
+
+</td>
+
+<td class="px-6 py-4">
+
+{{ $jogo->categoria }}
+
+</td>
+
+<td class="px-6 py-4">
+
+{{ $jogo->jogadores_min }} - {{ $jogo->jogadores_max }}
+
+</td>
+
+<td class="px-6 py-4">
+
+{{ $jogo->duracao_minutos }} min
+
+</td>
+
+<td class="px-6 py-4">
+
+<div class="flex justify-center gap-3">
+
+<a href="{{ route('jogos.edit',$jogo) }}"
+class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-yellow-500">
+
+Editar
+
+</a>
+
+<form action="{{ route('jogos.destroy',$jogo) }}"
+method="POST">
+
+@csrf
+@method('DELETE')
+
+<button
+onclick="return confirm('Excluir este jogo?')"
+class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+
+Excluir
+
+</button>
+
+</form>
+
+</div>
+
+</td>
+
+</tr>
+
+@empty
+
+<tr>
+
+<td colspan="5" class="text-center py-10 text-gray-500">
+
+Nenhum jogo cadastrado.
+
+</td>
+
+</tr>
+
+@endforelse
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
 </x-app-layout>

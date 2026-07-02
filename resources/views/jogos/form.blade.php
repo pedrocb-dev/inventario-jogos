@@ -1,30 +1,77 @@
-<div>
+<div class="space-y-6">
+
     <div>
-        <label>Nome</label><br>
-        <input type="text" name="nome" value="{{ old('nome', $jogo->nome ?? '') }}" required>
+        <label class="block mb-2 text-sm font-semibold text-gray-700">
+            Nome
+        </label>
+
+        <input
+            type="text"
+            name="nome"
+            value="{{ old('nome', $jogo->nome ?? '') }}"
+            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            required
+        >
     </div>
 
     <div>
-        <label>Categoria</label><br>
-        <input type="text" name="categoria" value="{{ old('categoria', $jogo->categoria ?? '') }}" required>
+        <label class="block mb-2 text-sm font-semibold text-gray-700">
+            Categoria
+        </label>
+
+        <input
+            type="text"
+            name="categoria"
+            value="{{ old('categoria', $jogo->categoria ?? '') }}"
+            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            required
+        >
     </div>
 
-    <div>
-        <label>Jogadores Mínimos</label><br>
-        <input type="number" name="jogadores_min" value="{{ old('jogadores_min', $jogo->jogadores_min ?? '') }}" required>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <div>
+            <label class="block mb-2 text-sm font-semibold text-gray-700">
+                Jogadores mínimos
+            </label>
+
+            <input
+                type="number"
+                name="jogadores_min"
+                value="{{ old('jogadores_min', $jogo->jogadores_min ?? '') }}"
+                class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                required
+            >
+        </div>
+
+        <div>
+            <label class="block mb-2 text-sm font-semibold text-gray-700">
+                Jogadores máximos
+            </label>
+
+            <input
+                type="number"
+                name="jogadores_max"
+                value="{{ old('jogadores_max', $jogo->jogadores_max ?? '') }}"
+                class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                required
+            >
+        </div>
+
+        <div>
+            <label class="block mb-2 text-sm font-semibold text-gray-700">
+                Duração (min)
+            </label>
+
+            <input
+                type="number"
+                name="duracao_minutos"
+                value="{{ old('duracao_minutos', $jogo->duracao_minutos ?? '') }}"
+                class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                required
+            >
+        </div>
+
     </div>
 
-    <div>
-        <label>Jogadores Máximos</label><br>
-        <input type="number" name="jogadores_max" value="{{ old('jogadores_max', $jogo->jogadores_max ?? '') }}" required>
-    </div>
-
-    <div>
-        <label>Duração (minutos)</label><br>
-        <input type="number" name="duracao_minutos" value="{{ old('duracao_minutos', $jogo->duracao_minutos ?? '') }}" required>
-    </div>
-
-    <br>
-
-    <button type="submit">Salvar</button>
 </div>

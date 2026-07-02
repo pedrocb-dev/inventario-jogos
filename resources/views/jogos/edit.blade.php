@@ -1,12 +1,52 @@
-<h1>Editar Jogo</h1>
+<x-app-layout>
 
-<form action="{{ route('jogos.update', $jogo) }}" method="POST">
-    @csrf
-    @method('PUT')
+<x-slot name="header">
+    <h2 class="text-2xl font-bold text-gray-800">
+        Editar Jogo
+    </h2>
+</x-slot>
 
-    @include('jogos.form')
+<div class="py-8">
 
-    <br>
+<div class="max-w-4xl mx-auto">
 
-    <a href="{{ route('jogos.index') }}">Voltar</a>
+<div class="bg-white shadow-xl rounded-xl">
+
+<div class="p-8">
+
+<form action="{{ route('jogos.update',$jogo) }}" method="POST">
+
+@csrf
+@method('PUT')
+
+@include('jogos.form')
+
+<div class="mt-8 flex justify-end gap-3">
+
+<a href="{{ route('jogos.index') }}"
+class="px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+
+Cancelar
+
+</a>
+
+<button
+class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-blue-700">
+
+Atualizar
+
+</button>
+
+</div>
+
 </form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</x-app-layout>
